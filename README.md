@@ -11,6 +11,16 @@
 
 ---
 
+## 👥 Equipe
+
+| Nome Completo | RA |
+|---------------|:--:|
+| Rafael Luiz Ferreira de Souza | 32511503 |
+| João Vitor Alves Rodrigues | 32513480 |
+| Pietro Cardoso de Oliveira | 32515280 |
+
+---
+
 ## 📋 Visão Geral
 
 O **StreamingFlix** é uma aplicação de console em **C# / .NET 10** que simula as regras de negócio de um serviço de streaming. O objetivo central do projeto é demonstrar boas práticas de **Garantia da Qualidade de Software (QA)**, aplicando **Testes Unitários Parametrizados** com o framework **xUnit** (`[Theory]` + `[InlineData]`) sobre o serviço `PlanoStreamingService`.
@@ -40,11 +50,45 @@ streaming-flix-xunit/
 └── README.md                               # Esta documentação
 ```
 
-O trabalho foi dividido entre os desenvolvedores da equipe:
+---
 
-- **Desenvolvedor 1 (Dev Backend / Core):** criação da solução via .NET CLI e implementação das regras de negócio em `PlanoStreamingService.cs`;
-- **Desenvolvedor 2 (QA / Testes Unitários):** escrita da suíte de testes parametrizados `PlanoStreamingServiceTests.cs` com xUnit;
-- **Desenvolvedor 3 (Documentação e DevOps / Versionamento):** configuração do repositório Git/GitHub, `.gitignore`, licença MIT e documentação (este `README.md`).
+## 🔧 Como Fizemos
+
+O projeto foi desenvolvido em equipe, com o trabalho dividido em três frentes complementares, conforme os papéis definidos na lista de exercícios. Cada frente foi responsável por uma camada do projeto — **código**, **qualidade** e **versionamento/documentação** — e o resultado foi integrado em um único repositório Git.
+
+### Etapa 1 — Estrutura da Solução e Regras de Negócio (Dev 1: Backend / Core)
+
+A solução foi criada do zero utilizando o **.NET CLI**, com um projeto de console para a aplicação e um projeto xUnit para os testes:
+
+```bash
+dotnet new sln -n StreamingFlix
+dotnet new console -n StreamingFlix.App -f net10.0
+dotnet new xunit -n StreamingFlix.Tests -f net10.0
+dotnet sln add StreamingFlix.App/StreamingFlix.App.csproj
+dotnet sln add StreamingFlix.Tests/StreamingFlix.Tests.csproj
+dotnet add StreamingFlix.Tests/StreamingFlix.Tests.csproj reference StreamingFlix.App/StreamingFlix.App.csproj
+```
+
+Em seguida, foi implementada a classe `PlanoStreamingService.cs` com os três métodos de regra de negócio (`ObterClassificacaoPorQualidade`, `CalcularMensalidadeComDesconto` e `PodeAcessarConteudoAdulto`), documentados com comentários XML (`/// <summary>`), e o `Program.cs` com uma demonstração de uso de cada regra no console.
+
+### Etapa 2 — Testes Unitários Parametrizados (Dev 2: QA / Testes)
+
+No projeto `StreamingFlix.Tests`, foi construída a classe `PlanoStreamingServiceTests.cs` utilizando os atributos **`[Theory]`** e **`[InlineData]`** do xUnit, criando **3 teorias com 9 cenários de teste** no total — uma teoria para cada regra de negócio, cobrindo todas as faixas de decisão (classificações de plano, faixas de desconto e combinações de idade × controle parental).
+
+A validação foi feita executando `dotnet test` no terminal, garantindo que **100% dos cenários passem com sucesso** antes do commit.
+
+### Etapa 3 — Versionamento e Documentação (Dev 3: DevOps)
+
+- Criação do **repositório público** [`streaming-flix-xunit`](https://github.com/Lebot007/streaming-flix-xunit) no GitHub;
+- Adição do arquivo **`.gitignore`** com o padrão oficial para projetos .NET (ignora `bin/`, `obj/`, `.vs/`, resultados de teste e arquivos de cobertura);
+- Configuração da **Licença MIT** no arquivo `LICENSE`;
+- Escrita desta documentação (`README.md`), com instruções de instalação, execução e testes.
+
+### Fluxo de Trabalho
+
+1. Cada desenvolvedor implementou sua parte localmente e validou com `dotnet build` / `dotnet test`;
+2. O código foi versionado com **Git** e integrado na branch `main` do GitHub por meio de commits incrementais, cada um descrevendo a etapa entregue;
+3. A documentação foi revisada para refletir fielmente a estrutura final da solução.
 
 ---
 
