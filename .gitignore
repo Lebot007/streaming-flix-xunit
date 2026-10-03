@@ -1,0 +1,24 @@
+## .gitignore para projetos .NET (padrao oficial: bin, obj, resultados de teste, configs de IDE)
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+[Tt]est[Rr]esult*/
+TestResult.xml
+*.coverage
+coverage*.xml
+coverage*.info
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.nupkg
+packages/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
